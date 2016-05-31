@@ -25,14 +25,12 @@ NOTE: Duplicate keys aren't supported.
 `qs.toObject()` //
 { FIELD1: 'VALUE1', FIELD2: 'VALUE2', FIELD3: 'VALUE3' }
 
-Add new key/value pairs to the query String
-Note: Adding a new key when an existing key exists is not supported
+Add new key/value pairs to the query String (adding a new key when an existing key exists is not supported)
 `qs.add('FIELD4, FIELD4')`
 `qs.toString()` // 
 '?FIELD1=VALUE1&FIELD2=VALUE2&FIELD3=VALUE3&FIELD4=VALUE4'
 
-Update an existing key with a new value
-Note: Updating a non-existing key is not supported
+Update an existing key with a new value (Updating a non-existing key is not supported)
 
 `qs.update('FIELD1, 'NEWVALUE');`
 `qs.toObject()` // 
