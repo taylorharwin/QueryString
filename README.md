@@ -52,5 +52,5 @@ You can run it with the command `node test.js` from within the test directory.
 ## Areas of interest
 Supporting nested queries, like '?name[first]=Taylor&name[last]=Harwin'. 
 In a Node production environment, it might make more sense to use Node's built-in QueryString module for aspects of this feature.
-My basis for writing this code made me want to eliminate external dependencies
+My basis for writing this code was to implement a set of specifications using the most straightforward code with the least amount of overhead.
 
