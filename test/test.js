@@ -1,5 +1,5 @@
-var constants = require('./constants'),
-	QueryString = require('./index.js');
+var constants = require('../constants/constants.js'),
+	QueryString = require('../index.js');
 
 function test(str, callback, expected){
 	var output = callback();
@@ -16,7 +16,6 @@ function test(str, callback, expected){
 	}
 	return 'FAIL: ' + output + ' does not match: ' + expected
 }
-
 
 var qs = new QueryString('?first=Taylor&last=Harwin');
 

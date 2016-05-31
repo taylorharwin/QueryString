@@ -1,4 +1,4 @@
-var constants = require('./constants');
+var constants = require('./constants/constants.js');
 
 function QueryString(str){
 	this._qString = this.isValid(str) ? str : '';
