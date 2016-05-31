@@ -12,7 +12,7 @@ To get started, clone this module, require the entry-point file, and set equal t
 ## Usage
 
 Provide a query string in the format '?FIELD1=VALUE1&FIELD2=VALUE2$FIELD3=VALUE3'
-NOTE: invalid inputs default to an empty string
+(invalid inputs default to an empty string)
 
 `var qs = new QueryString('?FIELD1=VALUE1&FIELD2=VALUE2$FIELD3=VALUE3')`
 
@@ -25,14 +25,12 @@ NOTE: Duplicate keys aren't supported.
 `qs.toObject()` //
 { FIELD1: 'VALUE1', FIELD2: 'VALUE2', FIELD3: 'VALUE3' }
 
-Add new key/value pairs to the query String
-NOTE: adding to an existing key will update that key
-
+Add new key/value pairs to the query String (adding a new key when an existing key exists is not supported)
 `qs.add('FIELD4, FIELD4')`
 `qs.toString()` // 
 '?FIELD1=VALUE1&FIELD2=VALUE2&FIELD3=VALUE3&FIELD4=VALUE4'
 
-Update an existing key with a new value
+Update an existing key with a new value (Updating a non-existing key is not supported)
 
 `qs.update('FIELD1, 'NEWVALUE');`
 `qs.toObject()` // 
@@ -54,5 +52,5 @@ You can run it with the command `node test.js` from within the test directory.
 ## Areas of interest
 Supporting nested queries, like '?name[first]=Taylor&name[last]=Harwin'. 
 In a Node production environment, it might make more sense to use Node's built-in QueryString module for aspects of this feature.
-My basis for writing this code made me want to eliminate external dependencies
+My basis for writing this code was to implement a set of specifications using the most straightforward code with the least amount of overhead.
 
