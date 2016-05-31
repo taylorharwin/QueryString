@@ -32,7 +32,9 @@ QueryString.prototype.decodeStr = function(str){
 	var queryParams = str.slice(1).split(constants.separate)
 	queryParams.forEach(function(param){
 		var keyValuePair = param.split(constants.equals);
-		obj[keyValuePair[0]] = keyValuePair[1];
+		if (keyValuePair.length === 2){
+			obj[keyValuePair[0]] = keyValuePair[1];
+		}
 	});
 	return obj;
 }
