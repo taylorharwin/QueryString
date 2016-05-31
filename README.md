@@ -12,7 +12,7 @@ To get started, clone this module, require the entry-point file, and set equal t
 ## Usage
 
 Provide a query string in the format '?FIELD1=VALUE1&FIELD2=VALUE2$FIELD3=VALUE3'
-NOTE: invalid inputs default to an empty string
+(invalid inputs default to an empty string)
 
 `var qs = new QueryString('?FIELD1=VALUE1&FIELD2=VALUE2$FIELD3=VALUE3')`
 
