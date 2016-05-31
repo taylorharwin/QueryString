@@ -46,6 +46,16 @@ test('outputs the query string as an object', function(){
 	last: 'Harwin',
 	role: 'engineer'
 }),
+
+test('modifies the query string and outputs the modified object', function(){
+	qs.add('age', 30);
+	qs.update('age', 31);
+	qs.remove('role');
+	return qs.toObject()
+}, {
+	age: 31,
+	last: 'Harwin'
+}),
 test('defaults to empty string if provided an empty query string', function(){
 	var empty =  new QueryString('');
 	var broken = new QueryString(broken);

@@ -1,21 +1,14 @@
 var constants = require('./constants');
 
-
 function QueryString(str){
-	if(!this.isValid(str)){
-		this.qString = '';
-
-	} else {
-		this.qString = str;
-		this.qsObj = this.toObject(str);
-	}
+	this._qString = this.isValid(str) ? str : '';
+	this._qObj = this.toObject(str);
 }
 
 QueryString.prototype.isValid = function(str){
-	var type = typeof str;
-	if (type === 'string'){
+	if (typeof str === 'string'){
 		if (str.indexOf(constants.start) > -1){
-			return str;
+			return true;
 		}
 		return false;
 	}
@@ -23,14 +16,15 @@ QueryString.prototype.isValid = function(str){
 }
 
 QueryString.prototype.toString = function(){
-	return this.qString;
+	return this._qString;
 }
 QueryString.prototype.toObject = function(){
-	if (this.qsObj !== undefined){
-		return this.qsObj;
+	if (this._qObj !== undefined){
+		return this._qObj;
 	} else {
-		this.qsObj = this.decodeStr(this.qString);
-		return this.qsObj;
+		this._qObj = this.decodeStr(this._qString
+	);
+		return this._qObj;
 	}
 }
 QueryString.prototype.decodeStr = function(str){
@@ -44,37 +38,58 @@ QueryString.prototype.decodeStr = function(str){
 }
 
 QueryString.prototype.encodeStr = function(){
-	var keys = Object.keys(this.qsObj);
+	var keys = Object.keys(this._qObj);
 	encodedString = '';
 
 	if (keys.length > -1){
-		encodedString += constants.start + keys[0] + constants.equals + this.qsObj[keys[0]];
+		encodedString += 
+		constants.start + 
+		keys[0] + 
+		constants.equals + 
+		this._qObj
+		[keys[0]];
 	}
 
-	for (var i = 1; i < keys.length; i++){
-		encodedString += constants.separate + keys[i] + constants.equals + this.qsObj[keys[i]];
+	if (keys.length >= 1){
+		for (var i = 1; i < keys.length; i++){
+			encodedString += 
+			constants.separate + 
+			keys[i] + 
+			constants.equals + 
+			this._qObj
+			[keys[i]];
+		}
 	}
-	this.qString = encodedString;
+	this._qString = encodedString;
 	return encodedString;
 }
 
 QueryString.prototype.add = function(key, value){
-	this.qsObj[key] = value;
+	this._qObj
+	[key] = value;
 	this.encodeStr();
 }
 
 QueryString.prototype.remove = function(key){
-	delete this.qsObj[key];
-	this.encodeStr();
+	if (this._qObj
+		[key] !== undefined){
+		delete this._qObj
+	[key];
+		this.encodeStr();
+		return true;
+	}
+	return false;	
 }
 
 QueryString.prototype.update = function(key, value){
-	if (this.qsObj[key] !== undefined){
-		this.qsObj[key] = value;
+	if (this._qObj
+		[key] !== undefined){
+		this._qObj
+	[key] = value;
 		this.encodeStr();
-	} else {
-		throw new Error('tried to update a nonexistant param: ' + key)
-	}
+		return true;
+	} 
+	return false;
 }
 
 module.exports = QueryString;
