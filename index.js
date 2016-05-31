@@ -65,16 +65,17 @@ QueryString.prototype.encodeStr = function(){
 }
 
 QueryString.prototype.add = function(key, value){
-	this._qObj
-	[key] = value;
+	if (this._qObj[key] !== undefined){
+		return false;
+	}
+	this._qObj[key] = value;
 	this.encodeStr();
+	return true;
 }
 
 QueryString.prototype.remove = function(key){
-	if (this._qObj
-		[key] !== undefined){
-		delete this._qObj
-	[key];
+	if (this._qObj[key] !== undefined){
+		delete this._qObj[key];
 		this.encodeStr();
 		return true;
 	}
@@ -82,10 +83,8 @@ QueryString.prototype.remove = function(key){
 }
 
 QueryString.prototype.update = function(key, value){
-	if (this._qObj
-		[key] !== undefined){
-		this._qObj
-	[key] = value;
+	if (this._qObj[key] !== undefined){
+		this._qObj[key] = value;
 		this.encodeStr();
 		return true;
 	} 

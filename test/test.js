@@ -64,8 +64,15 @@ test('defaults to empty string if provided a string with no query', function(){
 	var noQuery =  new QueryString('/%winning=true&team=Warriors');
 	var nonsense = new QueryString('werfwewegwerwerew234');
 	return noQuery.toString() + nonsense.toString();
-}, '')
-
+}, ''),
+test('does not add existing properties', function(){
+	qs.add('age', 99);
+	return qs.toString();
+}, '?last=Harwin&age=31'),
+test('does not update non-existing properties', function(){
+	qs.update('hobby', 'surfing');
+	return qs.toString();
+}, '?last=Harwin&age=31')
 ];
 
 console.log(tests);
