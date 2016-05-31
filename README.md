@@ -47,7 +47,7 @@ Remove the value at a key
 
 '?FIELD1=NEWVALUE&FIELD3=VALUE3&FIELD4=VALUE4'
 
-## TESTS
+## Tests
 A separate test file is included to demonstrate typical usage of this module. The test runner is a very basic homemade implementation. 
 You can run it with the command `node test.js` from within the test directory.
 
